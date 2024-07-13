@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>发送数据到服务器</title>
+    <script>
+        async function sendData() {
+            const data = document.getElementById("data").value;
+            const response = await fetch('http://localhost:8081/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: data })
+            });
+            const result = await response.json();
+            document.getElementById("response").innerText = result.message;
+        }
+    </script>
+</head>
+<body>
+    <h1>发送数据到服务器</h1>
+    <input type="text" id="data" placeholder="输入数据" />
+    <button onclick="sendData()">发送</button>
+    <p id="response"></p>
+</body>
+</html>
+ 
